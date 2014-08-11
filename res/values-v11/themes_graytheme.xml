@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- Generated with http://android-holo-colors.com -->
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+  <style name="GrayTheme" parent="@style/_GrayTheme"/>
+
+  <style name="_GrayTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+
+    <item name="android:buttonStyle">@style/ButtonGrayTheme</item>
+
+    <item name="android:imageButtonStyle">@style/ImageButtonGrayTheme</item>
+
+  </style>
+
+</resources>
