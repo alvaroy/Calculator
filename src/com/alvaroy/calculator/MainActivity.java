@@ -34,6 +34,7 @@ public class MainActivity extends Activity {
 	Boolean proc;
 	Boolean append;
 	Boolean secv;
+	Boolean lasteql;
 	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +65,7 @@ public class MainActivity extends Activity {
         proc = false;
         append = false;
         secv = true;
+        lasteql = false;
         
         num0.setOnClickListener(new OnClickListener() {
 			
@@ -79,6 +81,11 @@ public class MainActivity extends Activity {
 					else if(text.getText().toString().equals("-0"))
 					{
 						//Do Nothing
+					}
+					else if(lasteql == true)
+					{
+						text.setText("0");
+						lasteql = false;
 					}
 					else
 					{
@@ -115,6 +122,11 @@ public class MainActivity extends Activity {
 					{
 						text.setText("-1");
 					}
+					else if(lasteql == true)
+					{
+						text.setText("1");
+						lasteql = false;
+					}
 					else
 					{
 						text.append("1");
@@ -149,6 +161,11 @@ public class MainActivity extends Activity {
 					else if(text.getText().toString().equals("-0"))
 					{
 						text.setText("-2");
+					}
+					else if(lasteql == true)
+					{
+						text.setText("2");
+						lasteql = false;
 					}
 					else
 					{
@@ -185,6 +202,11 @@ public class MainActivity extends Activity {
 					{
 						text.setText("-3");
 					}
+					else if(lasteql == true)
+					{
+						text.setText("3");
+						lasteql = false;
+					}
 					else
 					{
 						text.append("3");
@@ -219,6 +241,11 @@ public class MainActivity extends Activity {
 					else if(text.getText().toString().equals("-0"))
 					{
 						text.setText("-4");
+					}
+					else if(lasteql == true)
+					{
+						text.setText("4");
+						lasteql = false;
 					}
 					else
 					{
@@ -255,6 +282,11 @@ public class MainActivity extends Activity {
 					{
 						text.setText("-5");
 					}
+					else if(lasteql == true)
+					{
+						text.setText("5");
+						lasteql = false;
+					}
 					else
 					{
 						text.append("5");
@@ -289,6 +321,11 @@ public class MainActivity extends Activity {
 					else if(text.getText().toString().equals("-0"))
 					{
 						text.setText("-6");
+					}
+					else if(lasteql == true)
+					{
+						text.setText("6");
+						lasteql = false;
 					}
 					else
 					{
@@ -325,6 +362,11 @@ public class MainActivity extends Activity {
 					{
 						text.setText("-7");
 					}
+					else if(lasteql == true)
+					{
+						text.setText("7");
+						lasteql = false;
+					}
 					else
 					{
 						text.append("7");
@@ -360,6 +402,11 @@ public class MainActivity extends Activity {
 					{
 						text.setText("-8");
 					}
+					else if(lasteql == true)
+					{
+						text.setText("8");
+						lasteql = false;
+					}
 					else
 					{
 						text.append("8");
@@ -394,6 +441,11 @@ public class MainActivity extends Activity {
 					else if(text.getText().toString().equals("-0"))
 					{
 						text.setText("-9");
+					}
+					else if(lasteql == true)
+					{
+						text.setText("9");
+						lasteql = false;
 					}
 					else
 					{
@@ -473,22 +525,54 @@ public class MainActivity extends Activity {
 			
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				op = "a";
+				// TODO Auto-generated method stub				
 				if(proc==false)
 				{
 					proc = true;
 					first = Double.valueOf(text.getText().toString());
 					append = false;
+					secv = true;
 				}
 				else
 				{
 					append = false;
 					secv = true;
 					second = Double.valueOf(text.getText().toString());
-					first = first + second;
+					if(op.equals("a"))
+					{
+						//Add
+						first = first + second;
+					}
+					else if(op.equals("s"))
+					{
+						//Subtract
+						first = first - second;
+					}
+					else if(op.equals("m"))
+					{
+						//Multiply
+						first = first * second;
+					}
+					else if(op.equals("d"))
+					{
+						//Divide
+						if(second.equals(Double.valueOf(0)))
+						{
+							text.setText("Error");
+							first = Double.valueOf(0);
+							second = Double.valueOf(0);
+							op = "";
+							proc = false;
+							append = false;
+						}
+						else
+						{
+							first = first / second;
+						}					
+					}
 					text.setText(String.valueOf(first));
 				}
+				op = "a";
 			}
 		});
         
@@ -496,22 +580,54 @@ public class MainActivity extends Activity {
 			
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				op = "s";
+				// TODO Auto-generated method stub				
 				if(proc==false)
 				{
 					proc = true;
 					first = Double.valueOf(text.getText().toString());
 					append = false;
+					secv = true;
 				}
 				else
 				{
 					append = false;
 					secv = true;
 					second = Double.valueOf(text.getText().toString());
-					first = first - second;
+					if(op.equals("a"))
+					{
+						//Add
+						first = first + second;
+					}
+					else if(op.equals("s"))
+					{
+						//Subtract
+						first = first - second;
+					}
+					else if(op.equals("m"))
+					{
+						//Multiply
+						first = first * second;
+					}
+					else if(op.equals("d"))
+					{
+						//Divide
+						if(second.equals(Double.valueOf(0)))
+						{
+							text.setText("Error");
+							first = Double.valueOf(0);
+							second = Double.valueOf(0);
+							op = "";
+							proc = false;
+							append = false;
+						}
+						else
+						{
+							first = first / second;
+						}					
+					}
 					text.setText(String.valueOf(first));
 				}
+				op = "s";
 			}
 		});
         
@@ -519,22 +635,54 @@ public class MainActivity extends Activity {
 			
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				op = "m";
+				// TODO Auto-generated method stub				
 				if(proc==false)
 				{
 					proc = true;
 					first = Double.valueOf(text.getText().toString());
-					append = false;
+					append = false; 
+					secv = true;
 				}
 				else
 				{
 					append = false;
 					secv = true;
 					second = Double.valueOf(text.getText().toString());
-					first = first * second;
+					if(op.equals("a"))
+					{
+						//Add
+						first = first + second;
+					}
+					else if(op.equals("s"))
+					{
+						//Subtract
+						first = first - second;
+					}
+					else if(op.equals("m"))
+					{
+						//Multiply
+						first = first * second;
+					}
+					else if(op.equals("d"))
+					{
+						//Divide
+						if(second.equals(Double.valueOf(0)))
+						{
+							text.setText("Error");
+							first = Double.valueOf(0);
+							second = Double.valueOf(0);
+							op = "";
+							proc = false;
+							append = false;
+						}
+						else
+						{
+							first = first / second;
+						}					
+					}
 					text.setText(String.valueOf(first));
 				}
+				op = "m";
 			}
 		});
         
@@ -549,26 +697,45 @@ public class MainActivity extends Activity {
 					proc = true;
 					first = Double.valueOf(text.getText().toString());
 					append = false;
+					secv = true;
 				}
 				else
 				{
 					append = false;
 					secv = true;
 					second = Double.valueOf(text.getText().toString());
-					if(second.equals(Double.valueOf(0)))
+					if(op.equals("a"))
 					{
-						text.setText("Error");
-						first = Double.valueOf(0);
-						second = Double.valueOf(0);
-						op = "";
-						proc = false;
-						append = false;
-						secv = true;
+						//Add
+						first = first + second;
 					}
-					else
+					else if(op.equals("s"))
 					{
-						first = first / second;
-					}	
+						//Subtract
+						first = first - second;
+					}
+					else if(op.equals("m"))
+					{
+						//Multiply
+						first = first * second;
+					}
+					else if(op.equals("d"))
+					{
+						//Divide
+						if(second.equals(Double.valueOf(0)))
+						{
+							text.setText("Error");
+							first = Double.valueOf(0);
+							second = Double.valueOf(0);
+							op = "";
+							proc = false;
+							append = false;
+						}
+						else
+						{
+							first = first / second;
+						}					
+					}
 					text.setText(String.valueOf(first));
 				}
 			}
@@ -634,11 +801,9 @@ public class MainActivity extends Activity {
 				first = result;
 				proc = false;
 				append = false;
+				lasteql = true;
 			}
 		});
-        
-        
-        
         
     }
 }
